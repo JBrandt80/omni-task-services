@@ -1,4 +1,4 @@
-/* Global Page Style */
+ /* Global Page Style */
 body {
     font-family: Arial, sans-serif;
     background: #eef4ff;
@@ -215,7 +215,7 @@ h2 {
     border: 1px solid #0a4d68;
     border-radius: 6px;
     text-align: center;
-    box-shadow: 0 0 8px rgba(0,0,0,0.12);
+    box-shadow: 0 0 8px rgba(0,0,0,0.12); <!-- rebuild -->
 }
 
 .feedback-section h2 {
