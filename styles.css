@@ -212,10 +212,10 @@ h2 {
     margin-top: 30px;
     padding: 15px;
     background: #eef7ff;
-    border: 2px solid #0a4d68;
+    border: 1px solid #0a4d68;
     border-radius: 6px;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0,0,0,0.15); <!-- rebuild -->
+    box-shadow: 0 0 8px rgba(0,0,0,0.12);
 }
 
 .feedback-section h2 {
