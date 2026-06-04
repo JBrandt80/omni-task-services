@@ -215,7 +215,7 @@ h2 {
     border: 2px solid #0a4d68;
     border-radius: 6px;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    box-shadow: 0 0 10px rgba(0,0,0,0.15); <!-- rebuild -->
 }
 
 .feedback-section h2 {
