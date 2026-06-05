@@ -97,17 +97,18 @@
         <h2>Book a Walk</h2>
         <form action="https://formsubmit.co/omnitaskservicesindiana@gmail.com" method="POST">
             
-            <!-- Required hidden fields -->
+           <!-- Required hidden fields -->
             <input type="hidden" name="_captcha" value="false">
 
             <!-- Redirect to success page -->
             <input type="hidden" name="_next" value="https://jbrandt80.github.io/omni-task-services/success.html">
 
-            <!-- REQUIRED for FormSubmit to send the email -->
-            <input type="hidden" name="_replyto" value="">
-            
-            <!-- REQUIRED so FormSubmit knows which field is the sender email -->
-            <input type="hidden" name="email" value="">
+            <!-- REQUIRED: tells FormSubmit which field contains the user's email -->
+            <input type="hidden" name="_replyto" value="email_address">
+
+            <!-- OPTIONAL but recommended -->
+            <input type="hidden" name="_subject" value="New Dog Walking Booking Request">
+            <input type="hidden" name="_template" value="table">
 
             <label>Your Name</label>
             <input type="text" name="customer_name"required>
