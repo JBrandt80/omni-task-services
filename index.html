@@ -104,7 +104,7 @@
             <input type="hidden" name="_next" value="https://jbrandt80.github.io/omni-task-services/success.html">
 
             <!-- REQUIRED: tells FormSubmit which field contains the user's email -->
-            <input type="hidden" name="_replyto" value="">
+            <input type="hidden" name="_replyto" id="replyto-field">
 
             <!-- OPTIONAL but recommended -->
             <input type="hidden" name="_subject" value="New Dog Walking Booking Request">
@@ -200,6 +200,8 @@
         <p>&copy; 2026 Omni Task Services</p>
     </footer>
 
+    <!-- Hide testimonials section if empty -->
+
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         const section = document.querySelector(".testimonials");
@@ -213,74 +215,79 @@
 
     <a href="#top" class="back-to-top">↑ Back to Top</a>
 
+    <!-- Register service worker -->
     <script>
-        if ("serviceWorker" in navigator) {
-            window.addEventListener("load", function () {
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
             navigator.serviceWorker.register("service-worker.js")
                 .then(() => console.log("Service Worker Registered"))
                 .catch(err => console.log("SW registration failed: ", err));
-            });
-        }
+        });
+    }
     </script>
 
+    <!-- Email match validation -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const form = document.querySelector("form");
-            const email = form.querySelector("input[name='email_address']");
-            const confirmEmail = form.querySelector("input[name='confirm_email']");
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        const email = form.querySelector("input[name='email']");
+        const confirmEmail = form.querySelector("input[name='confirm_email']");
 
-            form.addEventListener("submit", function (e) {
-                if (email.value.trim() !== confirmEmail.value.trim()) {
-                    e.preventDefault();
-                    alert("Email addresses do not match. Please check and try again.");
-                }
-            });
-        });
-        </script>
-
-        <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const address = document.querySelector("input[name='street_address']");
-            const city = document.querySelector("input[name='city']");
-
-            function formatText(input) {
-                let value = input.value.toLowerCase().trim();
-                value = value.replace(/\s+/g, " "); 
-                value = value.replace(/\b\w/g, char => char.toUpperCase());
-                input.value = value;
+        form.addEventListener("submit", function (e) {
+            if (email.value.trim() !== confirmEmail.value.trim()) {
+                e.preventDefault();
+                alert("Email addresses do not match. Please check and try again.");
             }
-
-            address.addEventListener("blur", () => formatText(address));
-            city.addEventListener("blur", () => formatText(city));
         });
-        </script>
+    });
+    </script>
 
-        <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const form = document.querySelector("form");
+    <!-- Auto-format address + city -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const address = document.querySelector("input[name='street_address']");
+        const city = document.querySelector("input[name='city']");
 
-            form.addEventListener("submit", function (e) {
-                e.preventDefault(); // stop normal submit
+        function formatText(input) {
+            let value = input.value.toLowerCase().trim();
+            value = value.replace(/\s+/g, " ");
+            value = value.replace(/\b\w/g, char => char.toUpperCase());
+            input.value = value;
+        }
 
-                const formData = new FormData(form);
-                const params = new URLSearchParams(formData).toString();
+        address.addEventListener("blur", () => formatText(address));
+        city.addEventListener("blur", () => formatText(city));
+    });
+    </script>
+  
+    <!-- Final FormSubmit handler -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
 
-                // Redirect URL with all form data attached
-                const redirectURL = "https://jbrandt80.github.io/omni-task-services/success.html?" + params;
+        form.addEventListener("submit", function (e) {
+            e.preventDefault(); // stop normal submit
 
-                // Fill hidden email field so FormSubmit can send the email
-                form.querySelector("input[name='email']").value = formData.get("email_address");
+            const formData = new FormData(form);
 
-                // Add dynamic redirect to FormSubmit
-                form.action = "https://formsubmit.co/omnitaskservicesindiana@gmail.com";
-                form.insertAdjacentHTML("beforeend",
-                    `<input type="hidden" name="_next" value="${redirectURL}">`
-                );
+            // Fill _replyto so FormSubmit can send the receipt email
+            document.getElementById("replyto-field").value = formData.get("email");
 
-                form.submit(); // now submit for real
-            });
-        });
-        </script>
+            const params = new URLSearchParams(formData).toString();
 
+            // Redirect URL with all form data attached
+            const redirectURL = "https://jbrandt80.github.io/omni-task-services/success.html?" + params;
+
+            // Add dynamic redirect to FormSubmit
+            form.action = "https://formsubmit.co/omnitaskservicesindiana@gmail.com";
+            form.insertAdjacentHTML("beforeend",
+                `<input type="hidden" name="_next" value="${redirectURL}">`
+            );
+
+            form.submit(); // now submit for real
+         });
+    });
+    </script>
+       
 </body>
 </html>
