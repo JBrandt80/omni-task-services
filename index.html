@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omni Task Services – Dog Walking</title>
+    <link rel="stylesheet" href="styles-v3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0a4d68"> <!-- force rebuild -->
+</head>
+<body>
+
+    <header>
+        <img src="images/logo.PNG" alt="Omni Task Services Logo" class="logo">
+        <h1><span class="white">Omni</span> <span class="teal">Task Services</span></h1>
+        <p class="tagline">Reliable Dog Walking in Southeastern Indiana</p>
+    </header>
+
+    <section class="about">
+        <h2>About Me</h2>
+        <p>Hi! My name is Jeffrey. I'm 13 years old (born 04/16) and I absolutely love dogs. I’m great with dogs of all sizes and personalities, and I started Omni Task Services to help families in my community keep their pets happy, healthy, and active.</p>
+    </section>
+
+    <section class="services">
+        <h2>Dog Walking Services</h2>
+
+        <div class="service-box">
+            <h3>30-Minute Walk – $25</h3>
+            <ul>
+                <li>Walk around your local area</li>
+                <li>Treats included</li>
+                <li>Play time included</li>
+            </ul>
+        </div>
+
+        <div class="service-box">
+            <h3>1-Hour Walk – $40</h3>
+            <ul>
+                <li>Longer walk for more exercise</li>
+                <li>Treats included</li>
+                <li>Play time included</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="booking">
+        <h2>Book a Walk</h2>
+        <p>You can book a walk by:</p>
+        <ul>
+            <li><strong>Calling or texting:</strong> <a href="tel:8129688318">812‑968‑8318</a></li>
+            <li><strong>Emailing:</strong> <a href="mailto:omnitaskservicesindiana@gmail.com">omnitaskservicesindiana@gmail.com</a></li>
+        </ul>
+
+        <p>When you book, I receive your message instantly so I can confirm your appointment.</p>
+    </section>
+
+    <section class="availability">
+        <h2>Availability</h2>
+
+        <div class="availability-box">
+            <p>📅 <strong>Monday, Wednesday, Thursday:</strong> 10 AM – 4 PM</p>
+            <p>📅 <strong>Tuesday & Friday:</strong> 11 AM – 5 PM</p>
+        </div>
+    </section>
+
+    <section class="areas">
+        <h2>Service Areas</h2>
+        <p>Osgood • Versailles • Greensburg • Batesville • Milan</p>
+    </section>
+
+    <section class="social">
+        <h2>Find Me Online</h2>
+        <p>Follow me for updates, photos, and more!</p>
+        <a href="https://www.facebook.com/share/g/1CmbrAaf8b/?mibextid=wwXlfr"
+           target="_blank"
+           class="fb-button">
+            <i class="fa-brands fa-facebook"></i> Join My Facebook Group
+        </a>
+
+        <div class="social-buttons">
+            <a href="https://www.tiktok.com/@omni.task.services" target="_blank" class="tiktok-button">
+                <i class="fab fa-tiktok"></i> TikTok
+            </a>
+
+            <a href="https://www.youtube.com/@omnitaskservices" target="_blank" class="youtube-button">
+                <i class="fa-brands fa-youtube"></i> YouTube
+            </a>
+        </div>
+    </section>
+
+    <section class="call-now">
+        <a href="tel:812-968-8318" class="call-button">📞 Call Now</a>
+    </section>
+
+    <section class="booking">
+        <h2>Book a Walk</h2>
+        <form action="https://formsubmit.co/omnitaskservicesindiana@gmail.com" method="POST">
+            
+           <!-- Required hidden fields -->
+            <input type="hidden" name="_captcha" value="false">
+
+            <!-- Redirect to success page -->
+            <input type="hidden" name="_next" value="https://jbrandt80.github.io/omni-task-services/success.html">
+
+            <!-- REQUIRED: tells FormSubmit which field contains the user's email -->
+            <input type="email" name="_replyto" id="replyto-field" hidden>
+
+            <!-- OPTIONAL but recommended -->
+            <input type="hidden" name="_subject" value="New Dog Walking Booking Request">
+            <input type="hidden" name="_template" value="table">
+
+            <label>Your Name</label>
+            <input type="text" name="customer_name"required>
+
+            <label>Your Phone Number</label>
+            <input type="tel" name="phone_number" required>
+
+            <label>Your Email Address</label>
+            <input type="email" name="email" required>
+
+            <label>Confirm Email Address</label>
+            <input type="email" name="confirm_email" required>
+
+            <label>Street Address</label>
+            <input type="text" name="street_address" required>
+
+            <label>City</label>
+            <input type="text" name="city" required>
+
+            <label>Dog’s Name</label>
+            <input type="text" name="dog_name"required>
+
+            <label>Select Service</label>
+            <select name="service"required>
+                <option>30-Minute Walk – $25</option>
+                <option>1-Hour Walk – $40</option>
+            </select>
+
+            <label>Preferred Date</label>
+            <input type="date" name="preferred_date" required>
+
+            <button type="submit" class="submit-button">Submit Booking</button>
+        </form>
+
+        <p class="receipt-note" style="margin-top:10px;">
+            <strong>A receipt for your service will be emailed to you.</strong>
+        </p>
+    </section>
+
+    <section class="payment-section">
+        <h2>Payment Accepted</h2>
+        <ul class="payment-list">
+            <li>Cash</li>
+            <li>Cash App</li>
+            <li>Venmo</li>
+        </ul>
+
+        <p class="payment-policy">
+            <strong>Please note: To ensure efficient scheduling, payment for all services is requested in full prior to the start of the service.</strong>
+        </p>
+    </section>
+
+    <section class="feedback-section">
+        <h2>Feedback / Complaints</h2>
+        <p>
+            We value your sastifaction. For any feedback or formal complaints regarding our services,
+            please contact us directly at:
+            <strong>omnitaskservicesindiana@gmail.com</strong>
+        </p>
+    </section>
+
+    <section class="testimonials">
+        <h2>Testimonials</h2>
+
+        <!-- Add testimonial boxes here when you get real ones -->
+        <!-- Example:
+        <div class="testimonial-box">
+            <p>"Amazing service! My dog loves his walks!"</p>
+            <span>- Sarah M.</span>
+        </div>
+         -->
+    </section>
+  
+    <section class="gallery">
+        <h2>Photo Gallery</h2>
+
+        <div class="home-gallery-grid">
+            <img src="images/adorable-animal-breed.jpg" alt="Dog Photo">
+            <img src="images/pexels-csibeman.jpg" alt="Dog Photo">
+            <img src="images/pexels-ryan-leeper.jpg" alt="Dog Photo">
+        </div>
+    </section>
+    
+    <p style="text-align:center; margin-top:20px;">
+        <a href="gallery.html" class="call-button">View Full Gallery</a>
+    </p>
+
+    <footer>
+        <p>&copy; 2026 Omni Task Services</p>
+    </footer>
+
+    <!-- Hide testimonials section if empty -->
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const section = document.querySelector(".testimonials");
+        const boxes = section.querySelectorAll(".testimonial-box");
+
+        if (boxes.length === 0) {
+            section.style.display = "none";
+        }
+    });
+    </script>
+
+    <a href="#top" class="back-to-top">↑ Back to Top</a>
+
+    <!-- Register service worker -->
+    <script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+            navigator.serviceWorker.register("service-worker.js")
+                .then(() => console.log("Service Worker Registered"))
+                .catch(err => console.log("SW registration failed: ", err));
+        });
+    }
+    </script>
+
+    <!-- Email match validation -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        const email = form.querySelector("input[name='email']");
+        const confirmEmail = form.querySelector("input[name='confirm_email']");
+
+        form.addEventListener("submit", function (e) {
+            if (email.value.trim() !== confirmEmail.value.trim()) {
+                e.preventDefault();
+                alert("Email addresses do not match. Please check and try again.");
+            }
+        });
+    });
+    </script>
+
+    <!-- Auto-format address + city -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const address = document.querySelector("input[name='street_address']");
+        const city = document.querySelector("input[name='city']");
+
+        function formatText(input) {
+            let value = input.value.toLowerCase().trim();
+            value = value.replace(/\s+/g, " ");
+            value = value.replace(/\b\w/g, char => char.toUpperCase());
+            input.value = value;
+        }
+
+        address.addEventListener("blur", () => formatText(address));
+        city.addEventListener("blur", () => formatText(city));
+    });
+    </script>
+  
+    <!-- Final FormSubmit handler -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        const replyField = document.getElementById("replyto-field");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const emailValue = form.querySelector("input[name='email']").value.trim();
+
+            // SAFETY CHECK: Make sure the hidden field exists
+            if (!replyField) {
+                alert("Error: _replyto field missing.");
+                return;
+            }
+
+            // Fill the hidden field
+            replyField.value = emailValue;
+
+            // Build redirect URL
+            const formData = new FormData(form);
+            const params = new URLSearchParams(formData).toString();
+            const redirectURL = "https://jbrandt80.github.io/omni-task-services/success.html?" + params;
+
+            // Set FormSubmit action + redirect
+            form.action = "https://formsubmit.co/omnitaskservicesindiana@gmail.com";
+
+            // Remove any old _next fields before adding a new one
+            const oldNext = form.querySelector("input[name='_next']");
+            if (oldNext) oldNext.remove();
+
+            form.insertAdjacentHTML("beforeend",
+                `<input type="hidden" name="_next" value="${redirectURL}">`
+            );
+
+            form.submit();
+        });
+    });
+    </script>
+   
+</body>
+</html>
