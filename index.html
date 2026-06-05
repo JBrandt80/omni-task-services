@@ -140,6 +140,15 @@
             <label>Preferred Date</label>
             <input type="date" name="preferred_date" required>
 
+            <label for="preferred_time">Preferred Time Window</label>
+            <select id="preferred_time" name="preferred_time" required>
+                <option value="" disabled selected>Select a time window</option>
+                <option value="9am-11am">9 AM – 11 AM</option>
+                <option value="11am-1pm">11 AM – 1 PM</option>
+                <option value="1pm-3pm">1 PM – 3 PM</option>
+                <option value="3pm-5pm">3 PM – 5 PM</option>
+            </select>
+
             <button type="submit" class="submit-button">Submit Booking</button>
         </form>
 

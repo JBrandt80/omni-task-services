@@ -67,6 +67,7 @@
         <p><strong>Dog’s Name:</strong> <span id="r_dog"></span></p>
         <p><strong>Service:</strong> <span id="r_service"></span></p>
         <p><strong>Preferred Date:</strong> <span id="r_date"></span></p>
+        <p><strong>Preferred Time:</strong> <span id="r_time"></span></p>
     </div>
 
     <p class="receipt-note">A copy of this receipt has been emailed to you.</p>
@@ -87,6 +88,7 @@
     document.getElementById("r_dog").textContent = params.get("dog_name") || "Not provided";
     document.getElementById("r_service").textContent = params.get("service") || "Not provided";
     document.getElementById("r_date").textContent = params.get("preferred_date") || "Not provided";
+    document.getElementById("r_time").textContent = params.get("preferred_time") || "Not provided";
 </script>
 
 </body>
