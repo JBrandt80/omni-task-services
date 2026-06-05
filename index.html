@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Omni Task Services – Dog Walking</title>
     <link rel="stylesheet" href="styles-v3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
@@ -71,16 +72,16 @@
         <a href="https://www.facebook.com/share/g/1CmbrAaf8b/?mibextid=wwXlfr"
            target="_blank"
            class="fb-button">
-            Join My Facebook Group
+            <i class="fa-brands fa-facebook"></i> Join My Facebook Group
         </a>
 
         <div class="social-buttons">
             <a href="https://www.tiktok.com/@omni.task.services" target="_blank" class="tiktok-button">
-                TikTok
+                <i class="fab fa-tiktok"></i> TikTok
             </a>
 
             <a href="https://www.youtube.com/@omnitaskservices" target="_blank" class="youtube-button">
-                YouTube
+                <i class="fa-brands fa-youtube"></i> YouTube
             </a>
         </div>
     </section>
@@ -146,6 +147,18 @@
         </p>
     </section>
 
+  <section class="testimonials">
+    <h2>Testimonials</h2>
+
+    <!-- Add testimonial boxes here when you get real ones -->
+    <!-- Example:
+    <div class="testimonial-box">
+        <p>"Amazing service! My dog loves his walks!"</p>
+        <span>- Sarah M.</span>
+    </div>
+    -->
+</section>
+  
     <section class="gallery">
         <h2>Photo Gallery</h2>
 
@@ -159,6 +172,19 @@
     <footer>
         <p>&copy; 2026 Omni Task Services</p>
     </footer>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const section = document.querySelector(".testimonials");
+        const boxes = section.querySelectorAll(".testimonial-box");
+
+        if (boxes.length === 0) {
+            section.style.display = "none";
+        }
+    });
+    </script>
+
+    <a href="#top" class="back-to-top">↑ Back to Top</a>
 
 </body>
 </html>
