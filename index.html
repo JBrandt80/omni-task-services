@@ -264,7 +264,8 @@
         const timeField = document.getElementById("preferred_time");
 
         dateField.addEventListener("change", function () {
-            const selectedDate = new Date(this.value);
+            const [year, month, dayNum] = this.value.split("-").map(Number);
+            const selectedDate = new Date(year, month - 1, dayNum); // Local date, no UTC shift
             const day = selectedDate.getDay(); // 0=Sun, 1=Mon, 2=Tue, ...
 
             // Clear old options
@@ -308,7 +309,7 @@
         /* ---------------------------------------------------------
            ⭐ END OF AUTO‑FILTER TIME WINDOW SCRIPT ⭐
         --------------------------------------------------------- */
-        
+
         // Form Submit interception and processing
         form.addEventListener("submit", function (e) {
             e.preventDefault();
