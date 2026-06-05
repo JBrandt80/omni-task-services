@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photo Gallery – Omni Task Services</title>
+    <link rel="stylesheet" href="styles-v3.css">
+</head>
+<body>
+
+<header>
+    <h1>Photo Gallery</h1>
+</header>
+
+<p style="text-align:center; margin-top:10px;">
+    <a href="index.html" class="call-button">← Back to Home</a>
+</p>
+
+<section class="gallery">
+    <h2>All Photos</h2>
+
+    <div class="gallery-grid">
+        <img src="images/adorable-animal-breed.jpg" alt="Dog Photo">
+        <img src="images/pexels-csibeman.jpg" alt="Dog Photo">
+        <img src="images/pexels-ryan-leeper.jpg" alt="Dog Photo">
+        <!-- Add more photos here anytime -->
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 Omni Task Services</p>
+</footer>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <span class="prev">&#10094;</span>
+    <img class="lightbox-content" id="lightbox-img">
+    <span class="next">&#10095;</span>
+</div>
+
+<script>
+const images = Array.from(document.querySelectorAll('.gallery-grid img'));
+let currentIndex = 0;
+
+function openLightbox(index) {
+    currentIndex = index;
+    document.getElementById('lightbox').style.display = 'block';
+    document.getElementById('lightbox-img').src = images[currentIndex].src;
+}
+
+images.forEach((img, index) => {
+    img.addEventListener('click', () => openLightbox(index));
+});
+
+document.querySelector('.lightbox .close').addEventListener('click', () => {
+    document.getElementById('lightbox').style.display = 'none';
+});
+
+document.querySelector('.lightbox .next').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    document.getElementById('lightbox-img').src = images[currentIndex].src;
+});
+
+document.querySelector('.lightbox .prev').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    document.getElementById('lightbox-img').src = images[currentIndex].src;
+});
+
+// Close lightbox when clicking outside the image
+document.getElementById('lightbox').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) {
+        document.getElementById('lightbox').style.display = 'none';
+    }
+});
+
+// Swipe navigation for mobile
+let startX = 0;
+
+document.getElementById('lightbox').addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+});
+
+document.getElementById('lightbox').addEventListener('touchend', (e) => {
+    let endX = e.changedTouches[0].clientX;
+    let diff = startX - endX;
+
+    // Swipe left → next photo
+    if (diff > 50) {
+        currentIndex = (currentIndex + 1) % images.length;
+        document.getElementById('lightbox-img').src = images[currentIndex].src;
+    }
+
+    // Swipe right → previous photo
+    if (diff < -50) {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        document.getElementById('lightbox-img').src = images[currentIndex].src;
+    }
+});
+</script>
+
+<a href="index.html" class="floating-home">← Home</a>
+
+</body>
+</html>
