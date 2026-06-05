@@ -117,7 +117,7 @@
             <input type="tel" name="phone_number" required>
 
             <label>Your Email Address</label>
-            <input type="email" name="email" required>
+            <input type="email" name="_autoresponse" required>
 
             <label>Confirm Email Address</label>
             <input type="email" name="confirm_email" required>
@@ -230,7 +230,7 @@
         const form = document.querySelector("form");
         const address = document.querySelector("input[name='street_address']");
         const city = document.querySelector("input[name='city']");
-        const emailInput = form.querySelector("input[name='email']");
+        const emailInput = form.querySelector("input[name='_autoresponse']"); //Updated name here
         const confirmEmailInput = form.querySelector("input[name='confirm_email']");
         const replyField = document.getElementById("replyto-field");
 
