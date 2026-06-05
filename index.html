@@ -142,13 +142,19 @@
 
             <label for="preferred_time">Preferred Time Window</label>
             <select id="preferred_time" name="preferred_time" required>
-                <option value="" disabled selected>Select a time window</option>
-                <option value="9am-11am">9 AM – 11 AM</option>
+                <option value="" disabled selected>Select a date first</option>
+                
+                <!-- Monday, Wednesday, Thursday -->
+                <option value="10am-12pm">10 AM – 12 PM</option>
+                <option value="12pm-2pm">12 PM – 2 PM</option>
+                <option value="2pm-4pm">2 PM – 4 PM</option>
+                
+                <!-- Tuesday, Friday -->
                 <option value="11am-1pm">11 AM – 1 PM</option>
                 <option value="1pm-3pm">1 PM – 3 PM</option>
                 <option value="3pm-5pm">3 PM – 5 PM</option>
             </select>
-
+            
             <button type="submit" class="submit-button">Submit Booking</button>
         </form>
 
@@ -250,6 +256,59 @@
         address.addEventListener("blur", () => formatText(address));
         city.addEventListener("blur", () => formatText(city));
 
+        /* ---------------------------------------------------------
+           ⭐ ADD THE AUTO‑FILTER TIME WINDOW SCRIPT RIGHT HERE ⭐
+        --------------------------------------------------------- */
+
+        const dateField = document.querySelector('input[name="preferred_date"]');
+        const timeField = document.getElementById("preferred_time");
+
+        dateField.addEventListener("change", function () {
+            const selectedDate = new Date(this.value);
+            const day = selectedDate.getDay(); // 0=Sun, 1=Mon, 2=Tue, ...
+
+            // Clear old options
+            timeField.innerHTML = "";
+
+            // Add placeholder
+            const placeholder = document.createElement("option");
+            placeholder.textContent = "Select a time window";
+            placeholder.disabled = true;
+            placeholder.selected = true;
+            timeField.appendChild(placeholder);
+
+            // Monday (1), Wednesday (3), Thursday (4)
+            if (day === 1 || day === 3 || day === 4) {
+                addOption("10am-12pm", "10 AM – 12 PM");
+                addOption("12pm-2pm", "12 PM – 2 PM");
+                addOption("2pm-4pm", "2 PM – 4 PM");
+            }
+
+            // Tuesday (2), Friday (5)
+            else if (day === 2 || day === 5) {
+                addOption("11am-1pm", "11 AM – 1 PM");
+                addOption("1pm-3pm", "1 PM – 3 PM");
+                addOption("3pm-5pm", "3 PM – 5 PM");
+            }
+
+            // Saturday (6) or Sunday (0)
+            else {
+                addOption("closed", "Closed — Please choose a weekday");
+                timeField.value = "closed";
+            }
+        });
+
+        function addOption(value, text) {
+            const opt = document.createElement("option");
+            opt.value = value;
+            opt.textContent = text;
+            timeField.appendChild(opt);
+        }
+
+        /* ---------------------------------------------------------
+           ⭐ END OF AUTO‑FILTER TIME WINDOW SCRIPT ⭐
+        --------------------------------------------------------- */
+        
         // Form Submit interception and processing
         form.addEventListener("submit", function (e) {
             e.preventDefault();
