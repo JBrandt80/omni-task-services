@@ -98,6 +98,8 @@
         <form action="https://formsubmit.co/omnitaskservicesindiana@gmail.com" method="POST">
             
             <input type="hidden" name="_captcha" value="false">
+
+            <!-- Redirect to success page -->
             <input type="hidden" name="_next" value="https://jbrandt80.github.io/omni-task-services/success.html">
 
             <label>Your Name</label>
@@ -242,6 +244,30 @@
 
             address.addEventListener("blur", () => formatText(address));
             city.addEventListener("blur", () => formatText(city));
+        });
+        </script>
+
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+
+            form.addEventListener("submit", function (e) {
+                e.preventDefault(); // stop normal submit
+
+                const formData = new FormData(form);
+                const params = new URLSearchParams(formData).toString();
+
+                // Redirect URL with all form data attached
+                const redirectURL = "https://jbrandt80.github.io/omni-task-services/success.html?" + params;
+
+                // Add dynamic redirect to FormSubmit
+                form.action = "https://formsubmit.co/omnitaskservicesindiana@gmail.com";
+                form.insertAdjacentHTML("beforeend",
+                    `<input type="hidden" name="_next" value="${redirectURL}">`
+                );
+
+                form.submit(); // now submit for real
+            });
         });
         </script>
 
