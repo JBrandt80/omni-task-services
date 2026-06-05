@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles-v3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0a4d68"> <!-- force rebuild -->
+    <meta name="theme-color" content="#0a4d68">
 </head>
 <body>
 
@@ -111,7 +111,7 @@
             <input type="hidden" name="_template" value="table">
 
             <label>Your Name</label>
-            <input type="text" name="customer_name"required>
+            <input type="text" name="customer_name" required>
 
             <label>Your Phone Number</label>
             <input type="tel" name="phone_number" required>
@@ -129,10 +129,10 @@
             <input type="text" name="city" required>
 
             <label>Dog’s Name</label>
-            <input type="text" name="dog_name"required>
+            <input type="text" name="dog_name" required>
 
             <label>Select Service</label>
-            <select name="service"required>
+            <select name="service" required>
                 <option>30-Minute Walk – $25</option>
                 <option>1-Hour Walk – $40</option>
             </select>
@@ -202,7 +202,7 @@
 
     <!-- Hide testimonials section if empty -->
 
-    <script>
+  <script>
     document.addEventListener("DOMContentLoaded", function() {
         const section = document.querySelector(".testimonials");
         const boxes = section.querySelectorAll(".testimonial-box");
@@ -215,7 +215,6 @@
 
     <a href="#top" class="back-to-top">↑ Back to Top</a>
 
-    <!-- Register service worker -->
     <script>
     if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {
@@ -226,28 +225,16 @@
     }
     </script>
 
-    <!-- Email match validation -->
     <script>
     document.addEventListener("DOMContentLoaded", function () {
         const form = document.querySelector("form");
-        const email = form.querySelector("input[name='email']");
-        const confirmEmail = form.querySelector("input[name='confirm_email']");
-
-        form.addEventListener("submit", function (e) {
-            if (email.value.trim() !== confirmEmail.value.trim()) {
-                e.preventDefault();
-                alert("Email addresses do not match. Please check and try again.");
-            }
-        });
-    });
-    </script>
-
-    <!-- Auto-format address + city -->
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
         const address = document.querySelector("input[name='street_address']");
         const city = document.querySelector("input[name='city']");
+        const emailInput = form.querySelector("input[name='email']");
+        const confirmEmailInput = form.querySelector("input[name='confirm_email']");
+        const replyField = document.getElementById("replyto-field");
 
+        // 1. Auto-capitalize helper function (runs when user clicks away from address/city)
         function formatText(input) {
             let value = input.value.toLowerCase().trim();
             value = value.replace(/\s+/g, " ");
@@ -257,44 +244,38 @@
 
         address.addEventListener("blur", () => formatText(address));
         city.addEventListener("blur", () => formatText(city));
-    });
-    </script>
-  
-    <!-- Final FormSubmit handler -->
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const form = document.querySelector("form");
-        const replyField = document.getElementById("replyto-field");
 
+        // 2. Form Submit Handler (runs when user clicks submit)
         form.addEventListener("submit", function (e) {
             e.preventDefault();
 
-            const emailValue = form.querySelector("input[name='email']").value.trim();
+            const emailValue = emailInput.value.trim();
+            const confirmEmailValue = confirmEmailInput.value.trim();
 
-            // SAFETY CHECK: Make sure the hidden field exists
+            if (emailValue !== confirmEmailValue) {
+                alert("Email addresses do not match. Please check and try again.");
+                return;
+            }
+
             if (!replyField) {
                 alert("Error: _replyto field missing.");
                 return;
             }
 
-            // Fill the hidden field
             replyField.value = emailValue;
 
-            // Build redirect URL
             const formData = new FormData(form);
             const params = new URLSearchParams(formData).toString();
             const redirectURL = "https://jbrandt80.github.io/omni-task-services/success.html?" + params;
 
-            // Set FormSubmit action + redirect
-            form.action = "https://formsubmit.co/omnitaskservicesindiana@gmail.com";
-
-            // Remove any old _next fields before adding a new one
-            const oldNext = form.querySelector("input[name='_next']");
-            if (oldNext) oldNext.remove();
-
-            form.insertAdjacentHTML("beforeend",
-                `<input type="hidden" name="_next" value="${redirectURL}">`
-            );
+            let nextField = form.querySelector("input[name='_next']");
+            if (!nextField) {
+                nextField = document.createElement("input");
+                nextField.type = "hidden";
+                nextField.name = "_next";
+                form.appendChild(nextField);
+            }
+            nextField.value = redirectURL;
 
             form.submit();
         });

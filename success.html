@@ -78,7 +78,10 @@
 
     document.getElementById("r_name").textContent = params.get("customer_name") || "Not provided";
     document.getElementById("r_phone").textContent = params.get("phone_number") || "Not provided";
-    document.getElementById("r_email").textContent = params.get("email_address") || "Not provided";
+    
+    // FIXED: Changed "email_address" to "email" to match your form input name
+    document.getElementById("r_email").textContent = params.get("email") || "Not provided";
+    
     document.getElementById("r_address").textContent = params.get("street_address") || "Not provided";
     document.getElementById("r_city").textContent = params.get("city") || "Not provided";
     document.getElementById("r_dog").textContent = params.get("dog_name") || "Not provided";
