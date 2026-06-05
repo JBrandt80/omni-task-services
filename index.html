@@ -264,30 +264,42 @@
     <script>
     document.addEventListener("DOMContentLoaded", function () {
         const form = document.querySelector("form");
+        const replyField = document.getElementById("replyto-field");
 
         form.addEventListener("submit", function (e) {
-            e.preventDefault(); // stop normal submit
+            e.preventDefault();
 
+            const emailValue = form.querySelector("input[name='email']").value.trim();
+
+            // SAFETY CHECK: Make sure the hidden field exists
+            if (!replyField) {
+                alert("Error: _replyto field missing.");
+                return;
+            }
+
+            // Fill the hidden field
+            replyField.value = emailValue;
+
+            // Build redirect URL
             const formData = new FormData(form);
-
-            // Fill _replyto so FormSubmit can send the receipt email
-            document.getElementById("replyto-field").value = formData.get("email");
-
             const params = new URLSearchParams(formData).toString();
-
-            // Redirect URL with all form data attached
             const redirectURL = "https://jbrandt80.github.io/omni-task-services/success.html?" + params;
 
-            // Add dynamic redirect to FormSubmit
+            // Set FormSubmit action + redirect
             form.action = "https://formsubmit.co/omnitaskservicesindiana@gmail.com";
+
+            // Remove any old _next fields before adding a new one
+            const oldNext = form.querySelector("input[name='_next']");
+            if (oldNext) oldNext.remove();
+
             form.insertAdjacentHTML("beforeend",
                 `<input type="hidden" name="_next" value="${redirectURL}">`
             );
 
-            form.submit(); // now submit for real
-         });
+            form.submit();
+        });
     });
     </script>
-       
+   
 </body>
 </html>
