@@ -110,6 +110,8 @@
             <input type="hidden" name="_subject" value="New Dog Walking Booking Request">
             <input type="hidden" name="_template" value="table">
 
+            <input type="hidden" name="_autoresponse" value="Thank you for booking with Omni Task Services! I have received your request and will review it shortly.">
+            
             <label>Your Name</label>
             <input type="text" name="customer_name" required>
 
@@ -117,7 +119,7 @@
             <input type="tel" name="phone_number" required>
 
             <label>Your Email Address</label>
-            <input type="email" name="_autoresponse" required>
+            <input type="email" name="email" required>
 
             <label>Confirm Email Address</label>
             <input type="email" name="confirm_email" required>
@@ -226,7 +228,7 @@
         const form = document.querySelector("form");
         const address = document.querySelector("input[name='street_address']");
         const city = document.querySelector("input[name='city']");
-        const emailInput = form.querySelector("input[name='_autoresponse']");
+        const emailInput = form.querySelector("input[name='email']");
         const confirmEmailInput = form.querySelector("input[name='confirm_email']");
         const replyField = document.getElementById("replyto-field");
 
