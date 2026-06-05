@@ -4,39 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request Sent</title>
+    <link rel="stylesheet" href="styles-v3.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;
-            background: #f7f7f7;
+            background: #eef4ff;
+            color: #222;
         }
+        
         h1 {
-            color: #2c7a7b;
-            font-size: 32px;
+            color: #0a4d68;
+            font-size: 36px;
+            margin-bottom: 10px;
         }
+        
         p {
             font-size: 18px;
             color: #333;
         }
+        
         a {
             display: inline-block;
             margin-top: 25px;
             padding: 12px 24px;
-            background: #2c7a7b;
+            background: #0a4d68;
             color: white;
             text-decoration: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
+        
         a:hover {
-            background: #225e5f;
+            background: #08384d;
+        }
+
+        /* Make the receipt section blend with the theme */
+        .receipt-preview {
+            margin-top: 40px;
         }
     </style>
+
 </head>
 <body>
     <h1>Thank You!</h1>
     <p>Your request has been sent successfully. I’ll get back to you shortly.</p>
     <a href="index.html">Return to Home</a>
+
+<section class="receipt-preview">
+    <h2>Your Booking Receipt</h2>
+    <p>Below is a summary of the information you submitted.</p>
+
+    <div class="receipt-box">
+        <p><strong>Name:</strong> <span id="r_name"></span></p>
+        <p><strong>Phone:</strong> <span id="r_phone"></span></p>
+        <p><strong>Email:</strong> <span id="r_email"></span></p>
+        <p><strong>Street Address:</strong> <span id="r_address"></span></p>
+        <p><strong>City:</strong> <span id="r_city"></span></p>
+        <p><strong>Dog’s Name:</strong> <span id="r_dog"></span></p>
+        <p><strong>Service:</strong> <span id="r_service"></span></p>
+        <p><strong>Preferred Date:</strong> <span id="r_date"></span></p>
+    </div>
+
+    <p class="receipt-note">A copy of this receipt has been emailed to you.</p>
+</section>
+
+<script>
+    // Get URL parameters from FormSubmit
+    const params = new URLSearchParams(window.location.search);
+
+    document.getElementById("r_name").textContent = params.get("customer_name") || "Not provided";
+    document.getElementById("r_phone").textContent = params.get("phone_number") || "Not provided";
+    document.getElementById("r_email").textContent = params.get("email_address") || "Not provided";
+    document.getElementById("r_address").textContent = params.get("street_address") || "Not provided";
+    document.getElementById("r_city").textContent = params.get("city") || "Not provided";
+    document.getElementById("r_dog").textContent = params.get("dog_name") || "Not provided";
+    document.getElementById("r_service").textContent = params.get("service") || "Not provided";
+    document.getElementById("r_date").textContent = params.get("preferred_date") || "Not provided";
+</script>
+
 </body>
 </html>

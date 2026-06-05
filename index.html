@@ -6,6 +6,8 @@
     <title>Omni Task Services – Dog Walking</title>
     <link rel="stylesheet" href="styles-v3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0a4d68">
 </head>
 <body>
 
@@ -104,7 +106,13 @@
             <label>Your Phone Number</label>
             <input type="tel" name="phone_number" required>
 
-           <label>Street Address</label>
+            <label>Your Email Address</label>
+            <input type="email" name="email_address" required>
+
+            <label>Confirm Email Address</label>
+            <input type="email" name="confirm_email" required>
+
+            <label>Street Address</label>
             <input type="text" name="street_address" required>
 
             <label>City</label>
@@ -124,6 +132,10 @@
 
             <button type="submit" class="submit-button">Submit Booking</button>
         </form>
+
+        <p class="receipt-note" style="margin-top:10px;">
+            <strong>A receipt for your service will be emailed to you.</strong>
+        </p>
     </section>
 
     <section class="payment-section">
@@ -190,6 +202,48 @@
     </script>
 
     <a href="#top" class="back-to-top">↑ Back to Top</a>
+
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function () {
+            navigator.serviceWorker.register("service-worker.js")
+                .then(() => console.log("Service Worker Registered"))
+                .catch(err => console.log("SW registration failed: ", err));
+            });
+        }
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+            const email = form.querySelector("input[name='email_address']");
+            const confirmEmail = form.querySelector("input[name='confirm_email']");
+
+            form.addEventListener("submit", function (e) {
+                if (email.value.trim() !== confirmEmail.value.trim()) {
+                    e.preventDefault();
+                    alert("Email addresses do not match. Please check and try again.");
+                }
+            });
+        });
+        </script>
+
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const address = document.querySelector("input[name='street_address']");
+            const city = document.querySelector("input[name='city']");
+
+            function formatText(input) {
+                let value = input.value.toLowerCase().trim();
+                value = value.replace(/\s+/g, " "); 
+                value = value.replace(/\b\w/g, char => char.toUpperCase());
+                input.value = value;
+            }
+
+            address.addEventListener("blur", () => formatText(address));
+            city.addEventListener("blur", () => formatText(city));
+        });
+        </script>
 
 </body>
 </html>
