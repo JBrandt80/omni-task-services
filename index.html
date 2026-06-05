@@ -97,10 +97,17 @@
         <h2>Book a Walk</h2>
         <form action="https://formsubmit.co/omnitaskservicesindiana@gmail.com" method="POST">
             
+            <!-- Required hidden fields -->
             <input type="hidden" name="_captcha" value="false">
 
             <!-- Redirect to success page -->
             <input type="hidden" name="_next" value="https://jbrandt80.github.io/omni-task-services/success.html">
+
+            <!-- REQUIRED for FormSubmit to send the email -->
+            <input type="hidden" name="_replyto" value="">
+            
+            <!-- REQUIRED so FormSubmit knows which field is the sender email -->
+            <input type="hidden" name="email" value="">
 
             <label>Your Name</label>
             <input type="text" name="customer_name"required>
@@ -259,6 +266,9 @@
 
                 // Redirect URL with all form data attached
                 const redirectURL = "https://jbrandt80.github.io/omni-task-services/success.html?" + params;
+
+                // Fill hidden email field so FormSubmit can send the email
+                form.querySelector("input[name='email']").value = formData.get("email_address");
 
                 // Add dynamic redirect to FormSubmit
                 form.action = "https://formsubmit.co/omnitaskservicesindiana@gmail.com";
