@@ -85,6 +85,41 @@ h2 {
     margin-top: 30px;
 }
 
+/* Social Buttons (TikTok + YouTube) */
+.social-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.tiktok-button,
+.youtube-button {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* TikTok */
+.tiktok-button {
+    background: #000000;
+}
+.tiktok-button:hover {
+    background: #222222;
+}
+
+/* YouTube */
+.youtube-button {
+    background: #FF0000;
+}
+.youtube-button:hover {
+    background: #cc0000;
+}
+
 .call-now {
     text-align: center;
     margin-top: 30px;
